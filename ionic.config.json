@@ -1,0 +1,8 @@
+{
+  "name": "IA_hypnotist",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}

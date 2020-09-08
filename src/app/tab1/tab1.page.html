@@ -1,0 +1,92 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-title>
+      Hypnotist
+    </ion-title>
+    <ion-icon (click)="openSearch()" style="font-size: x-large; position: relative;right: 20px;" slot="end"
+      name="search"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+
+    <ion-card style="margin-top: 8px;" *ngIf="bool">
+      <ion-item>
+        <ion-input class="input-field" placeholder="search">
+        </ion-input>
+        <ion-icon slot="end" name="arrow-forward"></ion-icon>
+      </ion-item>
+    </ion-card>
+    <ion-row>
+      <ion-col size-xs="12">
+
+
+        <ion-card (click)="gotoprofile()">
+          <div class="autosize" style="height: 150px;">
+            <img style="width:100%; 
+            height:100%; " src="https://wallpaperaccess.com/full/619997.png" />
+          </div>
+
+          <ion-grid>
+            <ion-row>
+              <ion-col size="auto">
+                <ion-card-title>Dr.Jonas</ion-card-title>
+              </ion-col>
+              <ion-col size="auto">
+                <ion-icon class="star" name="star"></ion-icon>
+              </ion-col>
+              <ion-col size="auto">
+                <ion-icon class="star" name="star"></ion-icon>
+              </ion-col>
+              <ion-col size="auto">
+                <ion-icon class="star" name="star"></ion-icon>
+              </ion-col>
+              <ion-col size="auto">
+                <ion-icon class="star" name="star"></ion-icon>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-card-subtitle>Hypnotist in gotham MBBS</ion-card-subtitle>
+            </ion-row>
+          </ion-grid>
+
+
+        </ion-card>
+      </ion-col>
+      <ion-col size-xs="12">
+        <ion-card (click)="gotoprofile()">
+          <div class="autosize" style="height: 150px;">
+            <img style="width:100%; 
+            height:100%; " src="https://ibnalnafees.com/wp-content/uploads/2017/10/2-missionandvision.jpg" />
+          </div>
+
+          <ion-grid>
+            <ion-row>
+              <ion-col size="auto">
+                <ion-card-title>Dr.Madison</ion-card-title>
+              </ion-col>
+              <ion-col size="auto">
+                <ion-icon class="star" name="star"></ion-icon>
+              </ion-col>
+              <ion-col size="auto">
+                <ion-icon class="star" name="star"></ion-icon>
+              </ion-col>
+              <ion-col size="auto">
+                <ion-icon class="star" name="star"></ion-icon>
+              </ion-col>
+              <ion-col size="auto">
+                <ion-icon class="star" name="star"></ion-icon>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-card-subtitle>Hypnotist in gotham MBBS</ion-card-subtitle>
+            </ion-row>
+          </ion-grid>
+
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

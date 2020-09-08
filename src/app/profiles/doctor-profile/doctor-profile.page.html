@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>DoctorProfile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <img src="https://wallpaperaccess.com/full/619997.png">
+      </ion-col>
+      <ion-col size="12">
+        <ion-card class="card">
+          <h1 class="headings">Dr.Jonas Smith DMD</h1>
+          <h6 class="subheading">Hypnotist </h6>
+          <p>Cambridge, MA</p>
+          <p>Commited to Dental Excellence </p>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="auto">
+                <ion-icon class="iconstar" icon="star"></ion-icon>
+              </ion-col>
+              <ion-col size="auto">
+                <ion-icon class="iconstar" icon="star"></ion-icon>
+              </ion-col>
+              <ion-col size="auto">
+                <ion-icon class="iconstar" icon="star"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </ion-col>
+      <ion-col size="auto">
+        <ion-item class="subheading">Conditions Treated</ion-item>
+      </ion-col>
+      <ion-col>
+        <p>
+          Dr. smith has confirmed that he treats the following conditions
+        </p>
+        <ion-row>
+          <ion-col>
+            <ul>
+              <li>Phobias.</li>
+              <li>Grief and loss</li>
+              <li>anxiety</li>
+            </ul>
+          </ion-col>
+          <ion-col>
+            <ul>
+              <li>Sleep disorders.</li>
+              <li>Depression.</li>
+              <li>Post-trauma anxiety.</li>
+            </ul>
+          </ion-col>
+        </ion-row>
+        <ion-button color="success" class="buttongreen" expand="block" (click)="presentModal()">
+          Take Appointment
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

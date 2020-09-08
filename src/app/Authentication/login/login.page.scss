@@ -1,0 +1,57 @@
+.icon-fa {
+  color: #4064ac;
+  font-size: 50px;
+}
+
+.icon-git {
+  font-size: 50px;
+}
+
+.icon-google {
+  color: #800db3;
+  font-size: 50px;
+}
+
+.back {
+  background-color: red;
+}
+
+.center {
+  height: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.textcenter {
+  text-align: center;
+}
+
+.bottom {
+  position: fixed;
+  bottom: -50px;
+  width: 100%;
+
+  border-radius: 40px;
+  -ms-transform: rotate(80deg);
+  transform: rotate(20deg);
+}
+
+ion-input {
+  height: 55px;
+}
+
+ion-card {
+  margin-top: 20px;
+}
+
+ion-button {
+  height: 50px;
+  margin-top: 20px;
+}
+
+ion-content {
+  --background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTtvjNQxelptT_MmNOQYHFLeMbnbkjnbZcvAA&usqp=CAU')
+    0 0/100% 100% no-repeat;
+}

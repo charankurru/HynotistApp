@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar style="background-color: #3880FF;">
+    <ion-title style="color: #3880FF;font-size: x-large;">Hypnotist</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="back">
+  <img src="../../../assets/icon/hypnosis.svg" class="center">
+
+  <h1 class="textcenter">Login</h1>
+
+  <ion-card>
+    <ion-item>
+      <ion-label style=" font-size: 20px;">
+        <ion-icon name="mail"></ion-icon>
+      </ion-label>
+      <ion-input class="input-field" [(ngModel)]="email" name="email" type="email" placeholder="Email"></ion-input>
+    </ion-item>
+
+  </ion-card>
+
+  <ion-card>
+    <ion-item>
+      <ion-label style="font-size: 20px;">
+        <ion-icon name="key"></ion-icon>
+      </ion-label>
+      <ion-input [(ngModel)]="password" name="password" type="password" placeholder="Password"></ion-input>
+    </ion-item>
+  </ion-card>
+
+
+  <ion-button color="success" (click)="loginUser()" expand="block">Login</ion-button>
+
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col offset="1">
+        <a color="primary" routerLink="/register">SignUp?</a>
+      </ion-col>
+      <ion-col>
+        <a color="primary" routerLink="">ForgetPassword?</a>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="icon-fa" offset="1">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-col>
+      <ion-col class="icon-git">
+        <ion-icon name="logo-github"></ion-icon>
+      </ion-col>
+      <ion-col class="icon-google">
+        <ion-icon name="logo-google"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- <img class="bottom"
+    src="https://image.freepik.com/free-vector/abstract-colorful-minimalist-clean-background_173783-2.jpg"> -->
+</ion-content>
