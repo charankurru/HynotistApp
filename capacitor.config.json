@@ -1,6 +1,6 @@
 {
   "appId": "com.hypnotistone.myapp",
-  "appName": "IA_hypnotist",
+  "appName": "hypnotist-app",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

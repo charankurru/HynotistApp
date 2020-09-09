@@ -19,6 +19,7 @@ export class UserService {
     private plt: Platform,
     private helper: JwtHelperService
   ) {
+    this.checkToken();
     this.plt.ready().then(() => {
       this.checkToken();
     });
@@ -27,6 +28,7 @@ export class UserService {
   checkToken() {
     this.storage.get('token').then((token) => {
       if (token) {
+        console.log(token);
         let decoded = this.helper.decodeToken(token);
         let isExpired = this.helper.isTokenExpired(token);
         if (!isExpired) {
@@ -58,6 +60,10 @@ export class UserService {
 
   isAuthenticated() {
     return this.validstate.value;
+  }
+
+  getUserbyUSername(name: any) {
+    return this.http.get(environment.apiBaseUrl + '/getbyname' + `/${name}`);
   }
 
   //Helper Methods
