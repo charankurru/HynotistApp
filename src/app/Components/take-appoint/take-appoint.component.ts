@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { UserService } from '../../Shared/user.service';
 import { LoadingController } from '@ionic/angular';
@@ -15,6 +15,8 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./take-appoint.component.scss'],
 })
 export class TakeAppointComponent implements OnInit {
+  @Input() data: any;
+
   name: string;
   subject: string;
   date: any;
@@ -23,6 +25,9 @@ export class TakeAppointComponent implements OnInit {
   payload: any;
   loading: boolean;
   fullname: string;
+  showsessions: boolean;
+  timings: any[];
+  showspin: boolean;
 
   constructor(
     private modalController: ModalController,
@@ -33,6 +38,9 @@ export class TakeAppointComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
+    this.showsessions = false;
+    this.showspin = false;
+    console.log(this.data);
     this.loading = false;
     this.payload = await this.userservice.getUserPayload();
     if (this.payload) {
@@ -41,16 +49,45 @@ export class TakeAppointComponent implements OnInit {
     }
   }
 
-  makeprocess() {
+  radioHandler() {
+    console.log(this.session);
+  }
+
+  makeAppointmentProcess() {
     this.presentAlert();
     let data = {
       username: this.name,
-      doctor: this.doctorname,
+      doctorname: this.data.fullName,
       problem: this.subject,
-      date: this.date,
+      appointmentDate: this.date,
+      doctorId: this.data._id,
+      sessionTimings: this.session,
     };
+    console.log(data);
+    this.behav.submitAppointment(data);
     this.dismiss();
-    this.behav.takedata(data);
+  }
+
+  checkAvail() {
+    this.showspin = true;
+    const data = {
+      id: this.data._id,
+      appointmentDate: this.date,
+      limitpatients: this.data.limitpatients,
+      sessArr: this.data.sessionlList,
+    };
+    console.log(data);
+    this.behav.checkavail(data).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.showspin = false;
+        this.showsessions = true;
+        this.timings = res.freetimmings;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   async presentAlert() {

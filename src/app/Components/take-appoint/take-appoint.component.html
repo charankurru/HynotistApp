@@ -3,7 +3,7 @@
     <ion-title>
       Appointment
     </ion-title>
-    <ion-button slot="end" (click)="dismiss()">Close</ion-button>
+    <ion-button slot="end" color="danger" (click)="dismiss()">Close</ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -31,38 +31,43 @@
       <ion-col>
         <ion-item>
           <ion-label>MM DD YY</ion-label>
-          <ion-datetime [(ngModel)]="date" name="date" displayFormat="MM DD YY" placeholder="Select Date">
+          <ion-datetime [(ngModel)]="date" name="date" placeholder="Select Date" min="2020-09-09" max="2020-12-12">
           </ion-datetime>
+
         </ion-item>
+        <br>
+        <ion-button class="avail" (click)="checkAvail()">check Availibility</ion-button>
 
-        <ion-radio-group allow-empty-selection value="anchovies">
-          <ion-list-header>
-            <h3>Sessions</h3>
-          </ion-list-header>
-          <ion-item>
-            <ion-label>9am -11am</ion-label>
-            <ion-radio slot="end" color="primary" value="9am -11am" [(ngModel)]="session" name="date"></ion-radio>
-          </ion-item>
 
-          <ion-item>
-            <ion-label>3pm-5pm</ion-label>
-            <ion-radio slot="end" color="secondary" value="anchovies"></ion-radio>
-          </ion-item>
+        <ion-spinner *ngIf="showspin" color="warning" name="crescent">
+        </ion-spinner>
 
+        <div class="" *ngIf="showsessions">
+
+          <br>
           <ion-item>
-            <ion-label>7pm-8pm</ion-label>
-            <ion-radio slot="end" color="danger" value="sausage"></ion-radio>
+            <h3>Sessions Available</h3>
           </ion-item>
-        </ion-radio-group>
+          <br>
+
+
+
+          <ion-radio-group [(ngModel)]="session" (ionChange)="radioHandler()" *ngFor="let i of timings">
+
+            <ion-item class="radio">
+              <ion-label>{{i}}</ion-label>
+              <ion-radio slot="end" color="primary" value="{{i}}">
+              </ion-radio>
+            </ion-item>
+
+          </ion-radio-group>
+          <br>
+          <ion-button expand="block" (click)="makeAppointmentProcess()">
+            confirm
+          </ion-button>
+        </div>
 
       </ion-col>
-
-      <ion-col size="12">
-        <ion-button expand="block" (click)="makeprocess()">
-          confirm
-        </ion-button>
-      </ion-col>
-
     </ion-row>
   </ion-grid>
 </ion-content>

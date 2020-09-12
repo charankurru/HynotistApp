@@ -32,7 +32,7 @@ export class RegisterPage implements OnInit {
       (res) => {
         console.log(res);
 
-        return this.router.navigateByUrl('/login');
+        return this.router.navigateByUrl('/');
       },
       (err) => {
         console.log(err.error[0]);

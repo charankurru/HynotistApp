@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar style="background-color: #3880FF;">
+  <ion-toolbar>
     <ion-title style="color: #3880FF;font-size: x-large;">Hypnotist</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -29,17 +29,21 @@
   </ion-card>
 
 
-  <ion-button color="success" (click)="loginUser()" expand="block">Login</ion-button>
+  <ion-button color="tertiary" (click)="loginUser()" expand="block">Login</ion-button>
 
 
 
   <ion-grid>
     <ion-row>
       <ion-col offset="1">
-        <a color="primary" routerLink="/register">SignUp?</a>
+        <a>
+          <h3 color="primary" routerLink="/register">SignUp?</h3>
+        </a>
       </ion-col>
       <ion-col>
-        <a color="primary" routerLink="">ForgetPassword?</a>
+        <a>
+          <h3 color="primary" routerLink="">ForgetPassword?</h3>
+        </a>
       </ion-col>
     </ion-row>
     <ion-row>

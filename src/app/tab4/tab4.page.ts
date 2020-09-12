@@ -19,24 +19,19 @@ export class Tab4Page implements OnInit {
   }
 
   async ionViewWillEnter() {
+    this.userservice.userdata().subscribe(
+      (res: any) => {
+        this.showspinner = false;
+        this.username = res.record.fullName;
+        this.email = res.record.email;
+      },
+      (err) => console.log(err)
+    );
+
     this.userservice.getUserPayload().then((res) => {
       this.name = res.fullName;
-      this.GetUserByname(this.name);
+      //this.GetUserByname(this.name);
     });
-  }
-
-  GetUserByname(name: any) {
-    this.userservice.getUserbyUSername(name).subscribe(
-      (data: any) => {
-        console.log(data);
-        this.showspinner = false;
-        this.username = data.record.fullName;
-        this.email = data.record.email;
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
   }
 
   Logout() {

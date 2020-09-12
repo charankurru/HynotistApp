@@ -6,6 +6,8 @@
   color: black;
   font-style: italic;
   font-weight: 500;
+  position: relative;
+  right: -5%;
 }
 
 .subheading {
@@ -13,12 +15,16 @@
   color: cornflowerblue;
   font-size: x-large;
   font-weight: 500;
+  position: relative;
+  right: -8%;
 }
 
 p {
   margin-top: -2px;
   font-size: larger;
   font-weight: 600;
+  position: relative;
+  right: -8%;
 }
 
 .iconstar {
@@ -38,4 +44,33 @@ li {
   font-size: 20px;
   position: relative;
   right: 5%;
+}
+
+ion-spinner {
+  width: 50px !important;
+  height: 50px !important;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.excellence {
+  margin-top: -10px;
+}
+
+.cond {
+  margin-top: -5px;
+  color: cornflowerblue;
+  font-size: x-large;
+  font-weight: 500;
+  position: relative;
+  right: -22%;
+}
+
+.descr {
+  margin-top: -2px;
+  font-size: larger;
+  font-weight: 600;
+  position: relative;
+  right: -5%;
 }

@@ -23,7 +23,6 @@ export class PostInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return from(this.userservice.getToken()).pipe(
       switchMap((token) => {
-        console.log(token);
         const headersConfig = {
           'Content-Type': 'application/json',
           Accept: 'application/json',

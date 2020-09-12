@@ -1,8 +1,8 @@
 export class Book {
   constructor(
     public username: string,
-    public doctor: string,
+    public doctorname: string,
     public problem: string,
-    public date: string
+    public appointmentDate: string
   ) {}
 }

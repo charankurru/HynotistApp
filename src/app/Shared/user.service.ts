@@ -12,6 +12,8 @@ import { Platform } from '@ionic/angular';
 export class UserService {
   user = null;
   public validstate = new BehaviorSubject(false);
+  public userRecordState = new BehaviorSubject<any[]>([]);
+  payload: any;
 
   constructor(
     private http: HttpClient,
@@ -25,10 +27,13 @@ export class UserService {
     });
   }
 
+  userdata() {
+    return this.userRecordState.asObservable();
+  }
+
   checkToken() {
     this.storage.get('token').then((token) => {
       if (token) {
-        console.log(token);
         let decoded = this.helper.decodeToken(token);
         let isExpired = this.helper.isTokenExpired(token);
         if (!isExpired) {
@@ -42,7 +47,7 @@ export class UserService {
   }
 
   signupUser(user: any) {
-    return this.http.post(environment.apiBaseUrl + '/register', user);
+    return this.http.post(environment.apiBaseUrl + '/Dr.register', user);
   }
 
   login(authCredentials: any) {
@@ -63,7 +68,20 @@ export class UserService {
   }
 
   getUserbyUSername(name: any) {
-    return this.http.get(environment.apiBaseUrl + '/getbyname' + `/${name}`);
+    return this.http
+      .get(environment.apiBaseUrl + '/getbyname' + `/${name}`)
+      .subscribe(
+        (res: any) => {
+          this.userRecordState.next(res);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+  }
+
+  getDoctors() {
+    return this.http.get(environment.apiBaseUrl + '/getDoctorsList');
   }
 
   //Helper Methods

@@ -23,7 +23,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'doctor-profile',
+    path: 'doctor-profile/:id',
     loadChildren: () =>
       import('./profiles/doctor-profile/doctor-profile.module').then(
         (m) => m.DoctorProfilePageModule

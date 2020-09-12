@@ -5,19 +5,30 @@ import { Book } from '../take-appoint/book.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PopoverService {
-  public favs = new BehaviorSubject<Book[]>([
-    new Book('charan', 'Srinu', 'Hypnotist', '2019-09-05T15:05:11.855+05:30'),
-  ]);
+  public favs = new BehaviorSubject<Book[]>([]);
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
   get favslist() {
     return this.favs.asObservable();
+  }
+
+  addtofav(data: any) {
+    this.http
+      .post(environment.apiBaseUrl + '/updatefav', data)
+      .subscribe((res) => {
+        console.log(res);
+        this.favslist.pipe(take(1)).subscribe((placings) => {
+          this.favs.next(placings.concat(data));
+          this.router.navigate(['home/tab3']);
+        });
+      });
   }
 
   // takedata(data: any) {

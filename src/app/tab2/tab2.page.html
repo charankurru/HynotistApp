@@ -17,8 +17,8 @@
             src="https://www.pngitem.com/pimgs/m/455-4554869_doctor-with-stethoscope-png-png-download-doctor-images.png">
         </ion-avatar>
         <ion-label>
-          <h1> Dr.{{appoint.doctor}}</h1>
-          <h2> For : {{appoint.date}}</h2>
+          <h1> Dr.{{appoint.doctorname}}</h1>
+          <h2> For : {{appoint.appointmentDate}}</h2>
           <h4 style="font-size: large;">{{appoint.problem}}</h4>
         </ion-label>
         <ion-icon *ngIf="processing" color="warning" name="alarm"></ion-icon>

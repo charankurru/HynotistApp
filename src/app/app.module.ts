@@ -21,6 +21,7 @@ import { SlidesComponent } from './Components/slides/slides.component';
 import { JwtModule, JWT_OPTIONS, JwtModuleOptions } from '@auth0/angular-jwt';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { PopoverComponent } from './Components/popover/popover.component';
+import { DoctorService } from './Shared/doctor.service';
 
 export function jwtOptionsFactory(Storage) {
   return {
@@ -66,6 +67,7 @@ export function jwtOptionsFactory(Storage) {
     UserService,
     BehaviourService,
     GooglePlus,
+    DoctorService,
   ],
   bootstrap: [AppComponent],
 })

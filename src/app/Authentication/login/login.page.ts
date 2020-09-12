@@ -42,7 +42,6 @@ export class LoginPage implements OnInit {
     this.userservice.login(body).subscribe(
       (res) => {
         this.userservice.validstate.next(true);
-        this.router.navigateByUrl('home/tab1');
         this.userservice.setToken(res['token']).then(() => {
           this.loadingCtrl.dismiss();
         });

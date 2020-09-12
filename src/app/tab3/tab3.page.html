@@ -9,14 +9,13 @@
 <ion-content [fullscreen]="true">
   <ion-list>
     <ion-item-sliding *ngFor="let fav of favouritedoctors">
-      <ion-item>
+      <ion-item (click)="gotoprofile(fav.favoneId._id)">
         <ion-avatar slot="start" style="height: 80px; width: 80px;">
-          <img style="height: 100%; width: 100%;"
-            src="https://www.pngitem.com/pimgs/m/455-4554869_doctor-with-stethoscope-png-png-download-doctor-images.png">
+          <img style="height: 100%; width: 100%;" [src]="fav.favoneId.imgUrl">
         </ion-avatar>
         <ion-label>
-          <h1> Dr.{{fav.doctor}}</h1>
-          <h4 style="font-size: large;">{{fav.problem}}</h4>
+          <h1> Dr.{{fav.favname}}</h1>
+          <!-- <h4 style="font-size: large;">{{fav.qualification}}</h4> -->
         </ion-label>
         <ion-icon color="danger" name="heart"></ion-icon>
       </ion-item>

@@ -6,9 +6,11 @@ import { FormsModule } from '@angular/forms';
 import { Tab2Page } from './tab2.page';
 
 import { Tab2PageRoutingModule } from './tab2-routing.module';
+import { Tab1Page } from '../tab1/tab1.page';
 
 @NgModule({
   imports: [IonicModule, CommonModule, FormsModule, Tab2PageRoutingModule],
   declarations: [Tab2Page],
+  providers: [Tab1Page],
 })
 export class Tab2PageModule {}

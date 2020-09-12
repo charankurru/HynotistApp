@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home/tab1"></ion-back-button>
     </ion-buttons>
@@ -10,18 +10,21 @@
 
 <ion-content>
 
-  <ion-grid>
+  <ion-spinner color="warning" *ngIf="isloading" name="crescent"></ion-spinner>
+
+  <ion-grid *ngIf="!isloading">
+
     <ion-row>
       <ion-col size="12">
-        <img src="https://wallpaperaccess.com/full/619997.png">
+        <img [src]="doctordetails.imgUrl">
       </ion-col>
       <ion-col size="12">
         <ion-card class="card">
-          <h1 class="headings">Dr.Jonas Smith DMD</h1>
+          <h1 class="headings">Dr.{{doctordetails.fullName}}</h1>
           <h6 class="subheading">Hypnotist </h6>
           <p>Cambridge, MA</p>
-          <p>Commited to Dental Excellence </p>
-          <ion-grid>
+          <p class="excellence">Commited to Mental Excellence </p>
+          <ion-grid style="margin-top: -10px;position: relative;right: -3%;">
             <ion-row>
               <ion-col size="auto">
                 <ion-icon class="iconstar" icon="star"></ion-icon>
@@ -32,16 +35,20 @@
               <ion-col size="auto">
                 <ion-icon class="iconstar" icon="star"></ion-icon>
               </ion-col>
+              <ion-col offset="1">
+                <ion-button>feedback</ion-button>
+              </ion-col>
             </ion-row>
+
           </ion-grid>
         </ion-card>
       </ion-col>
       <ion-col size="auto">
-        <ion-item class="subheading">Conditions Treated</ion-item>
+        <ion-item class="cond">Conditions Treated</ion-item>
       </ion-col>
       <ion-col>
-        <p>
-          Dr. smith has confirmed that he treats the following conditions
+        <p class="descr">
+          Dr.{{doctordetails.fullName}} has confirmed that he treats the following conditions
         </p>
         <ion-row>
           <ion-col>
@@ -59,7 +66,7 @@
             </ul>
           </ion-col>
         </ion-row>
-        <ion-button color="success" class="buttongreen" expand="block" (click)="presentModal()">
+        <ion-button color="success" class="buttongreen" expand="block" (click)="presentModal(doctordetails)">
           Take Appointment
         </ion-button>
       </ion-col>
