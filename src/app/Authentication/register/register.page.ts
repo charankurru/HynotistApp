@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../Shared/user.service';
 import { AlertController } from '@ionic/angular';
@@ -31,7 +31,6 @@ export class RegisterPage implements OnInit {
     this.userservice.signupUser(body).subscribe(
       (res) => {
         console.log(res);
-
         return this.router.navigateByUrl('/');
       },
       (err) => {
