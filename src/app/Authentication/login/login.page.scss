@@ -13,11 +13,11 @@
 }
 
 .center {
-  height: 200px;
+  height: 240px;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
+  width: 60%;
 }
 
 .textcenter {
@@ -38,7 +38,7 @@ ion-input {
   height: 55px;
 }
 
-ion-card {
+.inputbox {
   margin-top: 20px;
 }
 
@@ -50,4 +50,24 @@ ion-button {
 ion-content {
   --background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTtvjNQxelptT_MmNOQYHFLeMbnbkjnbZcvAA&usqp=CAU')
     0 0/100% 100% no-repeat;
+}
+
+ion-scroll[scrollX] {
+  white-space: nowrap;
+  height: 50px;
+  overflow: hidden;
+
+  .scroll-item {
+    display: inline-block;
+  }
+}
+
+/* Hide ion-content scrollbar */
+::-webkit-scrollbar {
+  display: none;
+}
+
+.slides {
+  height: 150px;
+  width: 200px;
 }

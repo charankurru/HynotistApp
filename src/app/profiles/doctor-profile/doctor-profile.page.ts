@@ -6,6 +6,7 @@ import { PopoverComponent } from '../../Components/popover/popover.component';
 import { Tab1Page } from '../../tab1/tab1.page';
 import { ActivatedRoute } from '@angular/router';
 import { DoctorService } from '../../Shared/doctor.service';
+import { PackageDetailsComponent } from 'src/app/Components/package-details/package-details.component';
 
 @Component({
   selector: 'app-doctor-profile',
@@ -28,6 +29,12 @@ export class DoctorProfilePage implements OnInit {
   doctordetails: any;
 
   password: string;
+
+  slideOpts = {
+    initialSlide: 0,
+    slidesPerView: 2,
+    speed: 400,
+  };
 
   ngOnInit() {
     this.isloading = true;
@@ -62,6 +69,20 @@ export class DoctorProfilePage implements OnInit {
         data: this.doctordetails,
       },
       event: ev,
+      translucent: true,
+    });
+    return await popover.present();
+  }
+
+  async packageDetails(ev: any) {
+    const popover = await this.popoverController.create({
+      component: PackageDetailsComponent,
+      cssClass: 'Packclass',
+      componentProps: {
+        data: this.doctordetails,
+      },
+      event: ev,
+      animated: true,
       translucent: true,
     });
     return await popover.present();

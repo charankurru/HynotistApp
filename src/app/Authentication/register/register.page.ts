@@ -42,7 +42,7 @@ export class RegisterPage implements OnInit {
 
   async presentAlert(err: any) {
     const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
+      cssClass: 'loading-class',
       header: 'Alert',
       message: err,
       buttons: ['OK'],

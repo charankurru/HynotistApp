@@ -11,7 +11,7 @@
     <ion-item-sliding *ngFor="let fav of favouritedoctors">
       <ion-item (click)="gotoprofile(fav.favoneId._id)">
         <ion-avatar slot="start" style="height: 80px; width: 80px;">
-          <img style="height: 100%; width: 100%;" [src]="fav.favoneId.imgUrl">
+          <img style="height: 200%; width: 100%;" [src]="fav.favoneId.imgUrl">
         </ion-avatar>
         <ion-label>
           <h1> Dr.{{fav.favname}}</h1>

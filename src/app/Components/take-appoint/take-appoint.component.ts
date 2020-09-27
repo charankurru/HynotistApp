@@ -8,6 +8,7 @@ import { BehaviourService } from './behaviour.service';
 import { CommonModule } from '@angular/common';
 import { NgForm } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
+import { strict } from 'assert';
 
 @Component({
   selector: 'app-take-appoint',
@@ -17,9 +18,10 @@ import { BehaviorSubject } from 'rxjs';
 export class TakeAppointComponent implements OnInit {
   @Input() data: any;
 
+  date = new Date().toISOString();
   name: string;
   subject: string;
-  date: any;
+
   session: string;
   doctorname: string = 'Steve';
   payload: any;
@@ -70,6 +72,15 @@ export class TakeAppointComponent implements OnInit {
 
   checkAvail() {
     this.showspin = true;
+
+    let newbum = String(new Date(this.date));
+    let latest = newbum.split(' ');
+    latest.splice(4, 1);
+    let bobs = latest.join(' ');
+    this.date = bobs;
+
+    // console.log(typeof bobs);
+
     const data = {
       id: this.data._id,
       appointmentDate: this.date,
@@ -77,6 +88,7 @@ export class TakeAppointComponent implements OnInit {
       sessArr: this.data.sessionlList,
     };
     console.log(data);
+
     this.behav.checkavail(data).subscribe(
       (res: any) => {
         console.log(res);

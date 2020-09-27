@@ -47,7 +47,7 @@ export class UserService {
   }
 
   signupUser(user: any) {
-    return this.http.post(environment.apiBaseUrl + '/Dr.register', user);
+    return this.http.post(environment.apiBaseUrl + '/register', user);
   }
 
   login(authCredentials: any) {

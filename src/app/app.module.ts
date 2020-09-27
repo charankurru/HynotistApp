@@ -22,6 +22,7 @@ import { JwtModule, JWT_OPTIONS, JwtModuleOptions } from '@auth0/angular-jwt';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { PopoverComponent } from './Components/popover/popover.component';
 import { DoctorService } from './Shared/doctor.service';
+import { PackageDetailsComponent } from './Components/package-details/package-details.component';
 
 export function jwtOptionsFactory(Storage) {
   return {
@@ -38,6 +39,7 @@ export function jwtOptionsFactory(Storage) {
     TakeAppointComponent,
     SlidesComponent,
     PopoverComponent,
+    PackageDetailsComponent,
   ],
   imports: [
     HttpClientModule,

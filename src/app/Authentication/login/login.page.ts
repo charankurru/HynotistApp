@@ -17,6 +17,8 @@ export class LoginPage implements OnInit {
   payload: any;
   token: any;
   userData: any;
+  googleuser: any;
+
   constructor(
     public navctrl: NavController,
     public router: Router,
@@ -56,7 +58,7 @@ export class LoginPage implements OnInit {
 
   async presentAlert(err: any) {
     const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
+      cssClass: 'loading-class',
       header: 'Alert',
       message: err,
       buttons: ['OK'],
@@ -66,7 +68,7 @@ export class LoginPage implements OnInit {
 
   async presentLoading() {
     this.loading = await this.loadingCtrl.create({
-      cssClass: 'my-custom-class',
+      cssClass: 'loading-class',
       message: 'Please wait...',
       duration: 2000,
     });
@@ -77,12 +79,13 @@ export class LoginPage implements OnInit {
     this.googlePlus
       .login({
         // optional, space-separated list of scopes, If not included or empty, defaults to `profile` and `email`.
-        webClientId:
-          '166259711506-6vl1f935u3muhdf24ra3n5khscpupt6v.apps.googleusercontent.com', // optional clientId of your Web application from Credentials settings of your project - On Android, this MUST be included to get an idToken. On iOS, it is not required.
-        offline: true,
       })
-      .then((result) => {
+      .then((result: any) => {
         console.log('respuesta login => ' + JSON.stringify(result));
+        this.googleuser = {
+          fullName: result.displayName,
+          email: result.email,
+        };
       })
       .catch((err) => {
         console.log('error del metodo login => ' + JSON.stringify(err));

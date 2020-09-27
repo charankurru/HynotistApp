@@ -43,6 +43,48 @@
           </ion-grid>
         </ion-card>
       </ion-col>
+      <ion-col>
+        <ion-slides [options]="slideOpts" style="background-color :#dddfe0;">
+
+          <ion-slide>
+
+            <ion-card>
+              <ion-col>
+                <ion-avatar>
+                  <img src="https://meetanentrepreneur.lu/wp-content/uploads/2019/08/profil-linkedin.jpg">
+                </ion-avatar>
+                <h4 (click)="packageDetails()">Anger Managment</h4>
+              </ion-col>
+            </ion-card>
+          </ion-slide>
+          <ion-slide>
+            <ion-card>
+
+
+              <ion-col style="width: 200px;height: 200px;">
+                <ion-avatar>
+                  <img src="https://meetanentrepreneur.lu/wp-content/uploads/2019/08/profil-linkedin.jpg">
+                </ion-avatar>
+                <h4>Anxiety Disorder</h4>
+              </ion-col>
+            </ion-card>
+          </ion-slide>
+
+          <ion-slide>
+
+            <ion-card>
+
+              <ion-col style="width: 200px;height: 200px;">
+                <ion-avatar>
+                  <img src="https://meetanentrepreneur.lu/wp-content/uploads/2019/08/profil-linkedin.jpg">
+                </ion-avatar>
+                <h4>Grief Managment</h4>
+              </ion-col>
+            </ion-card>
+
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
       <ion-col size="auto">
         <ion-item class="cond">Conditions Treated</ion-item>
       </ion-col>
