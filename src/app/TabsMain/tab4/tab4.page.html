@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+
+    <ion-title>
+      My Profile
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="" *ngIf="!showspinner">
+    <ion-spinner color="warning" *ngIf="showspinner" name="crescent"></ion-spinner>
+
+    <div class="coverpic" style="margin-top: -40px;">
+      <ion-col size="12">
+        <img
+          src="https://images.pexels.com/photos/109275/pexels-photo-109275.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500">
+      </ion-col>
+    </div>
+
+    <ion-card style="margin-top: -50px;" class="ioncarding">
+      <ion-avatar class="circle-pic">
+        <img
+          src="https://thumbs.dreamstime.com/b/faceless-businessman-avatar-man-suit-blue-tie-human-profile-userpic-face-features-web-picture-gentlemen-85824471.jpg" />
+      </ion-avatar>
+      <ion-card-header class="center">
+        <ion-card-title style="font-size: larger; color: black;"> {{username}}</ion-card-title>
+        <ion-card-subtitle style="font-size: x-large;"> {{email}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item ion-item *ngFor="let setting of profileSettings">
+            <ion-icon [name]="setting.icon" slot="start" color="primary"></ion-icon>
+            <ion-label text-wrap color="dark_light">{{setting.text}}</ion-label>
+            <ion-icon slot="end" name="arrow-forward-outline" color="dark_light"></ion-icon>
+          </ion-item>
+        </ion-list>
+
+
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

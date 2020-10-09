@@ -4,12 +4,12 @@ import { SlidesComponent } from './Components/slides/slides.component';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     loadChildren: () =>
-      import('./tabs/tabs.module').then((m) => m.TabsPageModule),
+      import('./TabsMain/tabs/tabs.module').then((m) => m.TabsPageModule),
   },
   {
-    path: '',
+    path: 'login',
     loadChildren: () =>
       import('./Authentication/login/login.module').then(
         (m) => m.LoginPageModule
@@ -29,17 +29,14 @@ const routes: Routes = [
         (m) => m.DoctorProfilePageModule
       ),
   },
-  {
-    path: 'user-profile',
-    loadChildren: () =>
-      import('./profiles/user-profile/user-profile.module').then(
-        (m) => m.UserProfilePageModule
-      ),
-  },
 
   {
     path: 'slides',
     component: SlidesComponent,
+  },
+  {
+    path: 'confirm-booking',
+    loadChildren: () => import('./Pages/confirm-booking/confirm-booking.module').then( m => m.ConfirmBookingPageModule)
   },
 ];
 @NgModule({

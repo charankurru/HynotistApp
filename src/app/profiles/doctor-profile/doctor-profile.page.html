@@ -1,4 +1,197 @@
-<ion-header>
+<ion-header class="ion-no-border">
+
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="chevron-back" defaultHref="home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-spinner color="warning" *ngIf="isloading" name="crescent"></ion-spinner>
+  <div class="ion-padding" *ngIf="!isloading">
+
+    <ion-card class="ion-margin-bottom  ioncarding">
+      <ion-avatar class="circle-pic">
+        <img [src]="doctordetails.imgUrl" />
+      </ion-avatar>
+      <!-- <img class="circle-pic" [src]="doctordetails.imgUrl"> -->
+
+      <ion-card-content>
+        <ion-row>
+          <ion-col size="12" class="ion-text-center ion-margin-bottom">
+            <ion-card-title style="font-size: x-large;color: black;">Dr.{{doctordetails.fullName}}
+            </ion-card-title>
+            <ion-card-subtitle style="font-size: larger;">Hypnotist</ion-card-subtitle>
+            <ion-card-subtitle>
+              <ion-icon name="star" color="warning"></ion-icon>
+              <ion-icon name="star" color="warning"></ion-icon>
+              <ion-icon name="star" color="warning"></ion-icon>
+              <ion-icon name="star" color="warning"></ion-icon>
+              <ion-icon name="star-outline" color="warning"></ion-icon>
+              <span> (12.5K)</span>
+            </ion-card-subtitle>
+          </ion-col>
+          <ion-col size="5" offset="1.2">
+            <h2 style="font-family: 'Times New Roman', Times, serif; color: black;font-size: 22px;">
+              <ion-icon name="people-circle-outline" style="font-size: larger;margin-top: 6px;"></ion-icon>
+              patients
+            </h2>
+            <p style="margin-left: 50%;font-size: 20px;"><b>45</b></p>
+
+          </ion-col>
+          <ion-col size="5">
+            <h2 style="font-family: 'Times New Roman', Times, serif; color: black;font-size: 22px;">
+              <ion-icon name="chatbox-outline" style="font-size: x-large; margin-top: 6px;"></ion-icon>
+              Reviews
+            </h2>
+            <p style="margin-left: 50%;font-size: 20px;"><b>45</b></p>
+
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+
+    <!-- <h6>Select Dates</h6>
+    <ion-item lines="none">
+      <ion-icon name="calendar-outline" slot="start"></ion-icon>
+      <ion-label>
+        <ion-datetime placeholder="23-07-2020" display-format="DD-MM-YYYY"></ion-datetime>
+      </ion-label>
+      <ion-icon name="chevron-forward" slot="end"></ion-icon>
+    </ion-item>
+
+    <h6>Pickup Location</h6>
+    <ion-item lines="none">
+      <ion-icon name="location-outline" slot="start"></ion-icon>
+      <ion-label>
+        <ion-input placeholder="Muscat"></ion-input>
+      </ion-label>
+      <ion-icon name="chevron-forward" slot="end"></ion-icon>
+    </ion-item> -->
+
+    <ion-grid class="ion-no-padding">
+      <ion-row class="ion-align-items-baseline">
+        <ion-col size="6">
+          <h4 class="title">
+            Treatment packages
+          </h4>
+        </ion-col>
+        <ion-col size="6">
+          <h4 class="more ion-text-end">
+            Show more
+          </h4>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col size="12">
+          <ion-slides [options]="categories">
+
+            <ion-slide>
+              <ion-card class="category" color="danger" (click)="packageDetails()">
+                <ion-card-header class="ion-text-center">
+                  <ion-icon src="https://www.flaticon.com/svg/static/icons/svg/3588/3588397.svg"></ion-icon>
+                  <ion-card-title>Cognitive </ion-card-title>
+                  <ion-card-subtitle>hypnotherapy</ion-card-subtitle>
+                </ion-card-header>
+              </ion-card>
+            </ion-slide>
+
+            <ion-slide>
+              <ion-card class="category" color="primary">
+                <ion-card-header class="ion-text-center">
+                  <ion-icon src="https://www.flaticon.com/svg/static/icons/svg/3588/3588440.svg"></ion-icon>
+                  <ion-card-title>Ericksonian</ion-card-title>
+                  <ion-card-subtitle>hypnotherapy</ion-card-subtitle>
+                </ion-card-header>
+              </ion-card>
+            </ion-slide>
+
+            <ion-slide>
+              <ion-card class="category" color="warning">
+                <ion-card-header class="ion-text-center">
+                  <ion-icon src="https://www.flaticon.com/svg/static/icons/svg/3520/3520923.svg"></ion-icon>
+                  <ion-card-title>psychotherapy</ion-card-title>
+                  <ion-card-subtitle>hypnotherapy</ion-card-subtitle>
+                </ion-card-header>
+              </ion-card>
+            </ion-slide>
+
+            <ion-slide>
+              <ion-card class="category" color="success">
+                <ion-card-header class="ion-text-center">
+                  <ion-icon src="https://www.flaticon.com/svg/static/icons/svg/3588/3588397.svg"></ion-icon>
+                  <ion-card-title>Hypnoanalysis</ion-card-title>
+                  <ion-card-subtitle>hypnotherapy</ion-card-subtitle>
+                </ion-card-header>
+              </ion-card>
+            </ion-slide>
+
+            <ion-slide>
+              <ion-card class="category" color="tertiary">
+                <ion-card-header class="ion-text-center">
+                  <ion-icon src="https://www.flaticon.com/svg/static/icons/svg/3588/3588440.svg"></ion-icon>
+                  <ion-card-title>Past life regression</ion-card-title>
+                  <ion-card-subtitle>hypnotherapy</ion-card-subtitle>
+
+                </ion-card-header>
+              </ion-card>
+            </ion-slide>
+
+            <ion-slide>
+              <ion-card class="category" color="danger">
+                <ion-card-header class="ion-text-center">
+                  <ion-icon src="https://www.flaticon.com/svg/static/icons/svg/3520/3520923.svg"></ion-icon>
+                  <ion-card-title>Rapid </ion-card-title>
+                  <ion-card-subtitle>Transformational</ion-card-subtitle>
+                </ion-card-header>
+              </ion-card>
+            </ion-slide>
+
+            <ion-slide>
+              <ion-card class="category" color="secondary">
+                <ion-card-header class="ion-text-center">
+                  <ion-icon src="https://www.flaticon.com/svg/static/icons/svg/3588/3588440.svg">
+                  </ion-icon>
+                  <ion-card-title>Time Line </ion-card-title>
+                  <ion-card-subtitle>Something here</ion-card-subtitle>
+                </ion-card-header>
+              </ion-card>
+            </ion-slide>
+
+          </ion-slides>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-button color="success" class="buttongreen" expand="block" (click)="presentModal(doctordetails)">
+      Take Appointment
+    </ion-button>
+    <ion-list>
+      <ion-list-header>
+        Others
+      </ion-list-header>
+      <ion-item ion-item *ngFor="let setting of profileSettings">
+        <ion-icon [name]="setting.icon" slot="start"></ion-icon>
+        <ion-label text-wrap color="dark_light">{{setting.text}}</ion-label>
+        <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
+      </ion-item>
+    </ion-list>
+
+
+
+  </div>
+</ion-content>
+
+
+
+<!-- <ion-header>
+
   <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home/tab1"></ion-back-button>
@@ -115,4 +308,4 @@
     </ion-row>
   </ion-grid>
 
-</ion-content>
+</ion-content> -->

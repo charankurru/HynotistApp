@@ -17,22 +17,24 @@
       <ion-label style=" font-size: 20px;">
         <ion-icon name="mail"></ion-icon>
       </ion-label>
-      <ion-input class="input-field" [(ngModel)]="email" name="email" type="email" placeholder="Email"></ion-input>
+      <ion-input class="input" class="input-field" [(ngModel)]="email" name="email" type="email" placeholder="Email">
+      </ion-input>
     </ion-item>
 
   </ion-card>
 
-  <ion-card>
+  <ion-card style="margin-top: 20px;">
     <ion-item>
       <ion-label style="font-size: 20px;">
         <ion-icon name="key"></ion-icon>
       </ion-label>
-      <ion-input [(ngModel)]="password" name="password" type="password" placeholder="Password"></ion-input>
+      <ion-input class="input" [(ngModel)]="password" name="password" type="password" placeholder="Password">
+      </ion-input>
     </ion-item>
   </ion-card>
 
 
-  <ion-button color="tertiary" (click)="loginUser()" expand="block">Login</ion-button>
+  <ion-button color="tertiary" (click)="loginUser()" expand="block" style="margin-top: 20px;">Login</ion-button>
 
 
 

@@ -23,6 +23,7 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { PopoverComponent } from './Components/popover/popover.component';
 import { DoctorService } from './Shared/doctor.service';
 import { PackageDetailsComponent } from './Components/package-details/package-details.component';
+import { PayPal } from '@ionic-native/paypal/ngx';
 
 export function jwtOptionsFactory(Storage) {
   return {
@@ -70,6 +71,7 @@ export function jwtOptionsFactory(Storage) {
     BehaviourService,
     GooglePlus,
     DoctorService,
+    PayPal
   ],
   bootstrap: [AppComponent],
 })

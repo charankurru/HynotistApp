@@ -4,11 +4,9 @@ import { UserService } from '../../Shared/user.service';
 import { LoadingController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { BehaviourService } from './behaviour.service';
-
-import { CommonModule } from '@angular/common';
-import { NgForm } from '@angular/forms';
-import { BehaviorSubject } from 'rxjs';
-import { strict } from 'assert';
+import { NavController } from '@ionic/angular';
+import { NavigationExtras } from '@angular/router';
+import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal/ngx';
 
 @Component({
   selector: 'app-take-appoint',
@@ -36,7 +34,9 @@ export class TakeAppointComponent implements OnInit {
     private userservice: UserService,
     public loadingController: LoadingController,
     public alert: AlertController,
-    public behav: BehaviourService
+    public behav: BehaviourService,
+    public navCtrl: NavController,
+    private payPal: PayPal
   ) {}
 
   async ngOnInit() {
@@ -56,18 +56,30 @@ export class TakeAppointComponent implements OnInit {
   }
 
   makeAppointmentProcess() {
-    this.presentAlert();
-    let data = {
-      username: this.name,
-      doctorname: this.data.fullName,
-      problem: this.subject,
-      appointmentDate: this.date,
-      doctorId: this.data._id,
-      sessionTimings: this.session,
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        username: this.name,
+        imgurl: this.data.imgUrl,
+        doctorname: this.data.fullName,
+        problem: this.subject,
+        appointmentDate: this.date,
+        doctorId: this.data._id,
+        sessionTimings: this.session,
+      },
     };
-    console.log(data);
-    this.behav.submitAppointment(data);
+
+    // let data = {
+    //   username: this.name,
+    //   doctorname: this.data.fullName,
+    //   problem: this.subject,
+    //   appointmentDate: this.date,
+    //   doctorId: this.data._id,
+    //   sessionTimings: this.session,
+    // };
+    // console.log(data);
+    // this.behav.submitAppointment(data);
     this.dismiss();
+    this.navCtrl.navigateForward(['confirm-booking'], navigationExtras);
   }
 
   checkAvail() {
@@ -78,8 +90,6 @@ export class TakeAppointComponent implements OnInit {
     latest.splice(4, 1);
     let bobs = latest.join(' ');
     this.date = bobs;
-
-    // console.log(typeof bobs);
 
     const data = {
       id: this.data._id,
@@ -118,4 +128,48 @@ export class TakeAppointComponent implements OnInit {
       dismissed: true,
     });
   }
+
+pay(){
+  this.payPal.init({
+    PayPalEnvironmentProduction: 'YOUR_PRODUCTION_CLIENT_ID',
+    PayPalEnvironmentSandbox: 'AWl5vZW1oi9_u1A8Q0v_V5uxRb-BLyWiCwIZ7R5SdOSZBqIP2NowhZZZLCOrvH7M7Hx1dOnCN5IUWdm1'
+  }).then(() => {
+    // Environments: PayPalEnvironmentNoNetwork, PayPalEnvironmentSandbox, PayPalEnvironmentProduction
+    this.payPal.prepareToRender('PayPalEnvironmentSandbox', new PayPalConfiguration({
+      // Only needed if you get an "Internal Service Error" after PayPal login!
+      //payPalShippingAddressOption: 2 // PayPalShippingAddressOptionPayPal
+    })).then(() => {
+      let payment = new PayPalPayment('3.33', 'INR', 'Description', 'sale');
+      this.payPal.renderSinglePaymentUI(payment).then((result) => {
+
+        console.log(result)
+        // Successfully paid
+        // Example sandbox response
+        //
+        // {
+        //   "client": {
+        //     "environment": "sandbox",
+        //     "product_name": "PayPal iOS SDK",
+        //     "paypal_sdk_version": "2.16.0",
+        //     "platform": "iOS"
+        //   },
+        //   "response_type": "payment",
+        //   "response": {
+        //     "id": "PAY-1AB23456CD789012EF34GHIJ",
+        //     "state": "approved",
+        //     "create_time": "2016-10-03T13:33:33Z",
+        //     "intent": "sale"
+        //   }
+        // }
+      }, (err) => {
+            console.log(err)
+      });
+    }, (err) => {
+      console.log(err)
+    });
+  }, (err) => {
+    console.log(" error in initialization " + JSON.stringify(err))
+  });
+}
+
 }

@@ -28,9 +28,9 @@ export class AppComponent {
       this.splashScreen.hide();
       this.userservice.validstate.subscribe((state) => {
         if (state) {
-          this.router.navigate(['home/tab1']);
+          this.router.navigate(['tab1']);
         } else {
-          this.router.navigate(['/']);
+          this.router.navigate(['/login']);
         }
       });
     });
