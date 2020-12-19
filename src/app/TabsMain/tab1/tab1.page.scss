@@ -77,3 +77,19 @@ ion-badge {
   padding: 10px;
   font-size: 14px;
 }
+
+.catitle {
+  font-size: 5px;
+  font-weight: bolder;
+}
+
+ion-card-header {
+  ion-icon {
+    font-size: 60px;
+  }
+
+  ion-card-title {
+    font-size: 15px;
+    font-weight: bolder;
+  }
+}

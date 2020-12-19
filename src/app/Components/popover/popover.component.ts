@@ -18,6 +18,5 @@ export class PopoverComponent implements OnInit {
 
   addtofav() {
     this.popser.addtofav(this.data);
-    this.popoverController.dismiss();
   }
 }

@@ -38,6 +38,10 @@ const routes: Routes = [
     path: 'confirm-booking',
     loadChildren: () => import('./Pages/confirm-booking/confirm-booking.module').then( m => m.ConfirmBookingPageModule)
   },
+  {
+    path: 'all-doctors',
+    loadChildren: () => import('./Pages/all-doctors/all-doctors.module').then( m => m.AllDoctorsPageModule)
+  },
 ];
 @NgModule({
   imports: [

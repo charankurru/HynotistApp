@@ -28,19 +28,25 @@ export class Tab1Page implements OnInit {
 
   constructor(private router: Router, private userservice: UserService) {}
 
+
+  async ionViewWillEnter(){
+    this.payload = await this.userservice.getUserPayload();
+    //console.log(this.payload);
+    if(this.payload){
+      this.userservice.getUserbyUSername(this.payload.fullName);
+     }
+  }
+
   async ngOnInit() {
     this.bool = false;
-    this.payload = await this.userservice.getUserPayload();
-    console.log(this.payload);
     this.gettingDoctors();
-    this.userservice.getUserbyUSername(this.payload.fullName);
   }
+  
 
   gettingDoctors() {
     this.userservice.getDoctors().subscribe(
       (res: any) => {
-        this.doctorsarray = res.doctors;
-        this.reversearray = this.doctorsarray.reverse();
+        this.reversearray = res.doctors;
       },
       (err) => {
         console.log(err);
@@ -58,5 +64,8 @@ export class Tab1Page implements OnInit {
 
   openSearch() {
     this.bool = !this.bool;
+  }
+  gotoallDoc(){
+    this.router.navigateByUrl('/all-doctors')
   }
 }

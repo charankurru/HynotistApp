@@ -1,13 +1,22 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="tertiary">
-
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
     <ion-title>
       My Profile
     </ion-title>
+    <ion-icon (click)="presentActionSheet()" style="font-size: x-large; position: relative;right: 20px;" slot="end"
+      name="camera"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-spinner color="warning" name="crescent" *ngIf="showspinner"
+    style="height: 80px;width: 80px;display: block; margin-left: auto;margin-right: auto;margin-top:40%;">
+  </ion-spinner>
+
   <div class="" *ngIf="!showspinner">
     <ion-spinner color="warning" *ngIf="showspinner" name="crescent"></ion-spinner>
 
@@ -20,9 +29,9 @@
 
     <ion-card style="margin-top: -50px;" class="ioncarding">
       <ion-avatar class="circle-pic">
-        <img
-          src="https://thumbs.dreamstime.com/b/faceless-businessman-avatar-man-suit-blue-tie-human-profile-userpic-face-features-web-picture-gentlemen-85824471.jpg" />
+        <img [src]="img">
       </ion-avatar>
+
       <ion-card-header class="center">
         <ion-card-title style="font-size: larger; color: black;"> {{username}}</ion-card-title>
         <ion-card-subtitle style="font-size: x-large;"> {{email}}</ion-card-subtitle>

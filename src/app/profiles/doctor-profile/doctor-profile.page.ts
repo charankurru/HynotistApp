@@ -70,27 +70,23 @@ export class DoctorProfilePage implements OnInit {
     return await modal.present();
   }
 
-  async presentPopover(ev: any) {
+  async presentPopover() {
     const popover = await this.popoverController.create({
       component: PopoverComponent,
       cssClass: 'my-custom-class',
       componentProps: {
         data: this.doctordetails,
       },
-      event: ev,
       translucent: true,
     });
     return await popover.present();
   }
 
-  async packageDetails(ev: any) {
+  async packageDetails() {
     const popover = await this.popoverController.create({
       component: PackageDetailsComponent,
       cssClass: 'Packclass',
-      componentProps: {
-        data: this.doctordetails,
-      },
-      event: ev,
+    
       animated: true,
       translucent: true,
     });

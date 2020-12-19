@@ -8,7 +8,7 @@ import { UserService } from '../../Shared/user.service';
   styleUrls: ['tab3.page.scss'],
 })
 export class Tab3Page implements OnInit {
-  favouritedoctors: any;
+  favouritedoctors: any[] = [];
   processing: boolean;
   payload: any;
   constructor(
@@ -18,22 +18,24 @@ export class Tab3Page implements OnInit {
   ) {}
 
   async ngOnInit() {
-    this.payload = await this.userservice.getUserPayload();
-    this.processing = true;
-  }
-
-  ionViewWillEnter() {
-    this.getRecentyAddedDoctor();
-  }
-
-  getRecentyAddedDoctor() {
     this.pser.favslist.subscribe((res) => {
+      console.log(res);
+    //  if(this.favouritedoctors.length > 0){
+    //   this.favouritedoctors = [ res[0].fullName , ...this.favouritedoctors]
+    //  }
+    //   console.log(this.favouritedoctors)
       this.getFavdoctor();
-      this.userservice.getUserbyUSername(this.payload.fullName);
     });
   }
 
+  ionViewWillEnter(){
+    this.getFavdoctor();
+  }
+
+  
+
   getFavdoctor() {
+    console.log("called")
     this.userservice.userdata().subscribe(
       (res: any) => {
         this.favouritedoctors = res.record.favlist;

@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-title>
+      Upload Image
+    </ion-title>
+    <ion-icon (click)="dismiss()" style="font-size: x-large; position: relative;right: 20px;" slot="end" name="close">
+    </ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <img [src]="data" style="width: 100%" *ngIf="data">
+  <ion-item>
+    <ion-input placeholder="My Awesome Image" [(ngModel)]="desc"></ion-input>
+  </ion-item>
+
+  <br>
+
+  <ion-button (click)="upload()" expand="block" fill="outile" shape="round">
+    <ion-icon name="checkmark"></ion-icon>
+    Save & Upload Image
+  </ion-button>
+
+  <img [src]="url" style="width: 100%" *ngIf="url">
+</ion-content>

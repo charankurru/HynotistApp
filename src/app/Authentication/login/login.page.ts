@@ -43,10 +43,10 @@ export class LoginPage implements OnInit {
     };
     this.userservice.login(body).subscribe(
       (res) => {
+        this.loadingCtrl.dismiss();
         this.userservice.validstate.next(true);
-        this.userservice.setToken(res['token']).then(() => {
-          this.loadingCtrl.dismiss();
-        });
+        this.userservice.setToken(res['token'])
+        
       },
       (err) => {
         this.loadingCtrl.dismiss();
@@ -70,22 +70,36 @@ export class LoginPage implements OnInit {
     this.loading = await this.loadingCtrl.create({
       cssClass: 'loading-class',
       message: 'Please wait...',
+      mode :'ios',
       duration: 2000,
     });
     this.loading.present();
   }
 
   googleLogin() {
+    this.presentLoading();
     this.googlePlus
-      .login({
-        // optional, space-separated list of scopes, If not included or empty, defaults to `profile` and `email`.
-      })
+      .login({})
       .then((result: any) => {
-        console.log('respuesta login => ' + JSON.stringify(result));
-        this.googleuser = {
-          fullName: result.displayName,
+        console.log('res => ' + JSON.stringify(result));
+        var body = {
           email: result.email,
+          name: result.displayName,
+          imgurl: result.imageUrl,
         };
+        this.userservice.googleuser(body).subscribe(
+          (res) => {
+            this.userservice.validstate.next(true);
+            this.loadingCtrl.dismiss();
+            this.userservice.setToken(res['newToken']);
+           
+          },
+          (err) => {
+            this.loadingCtrl.dismiss();
+            console.log(err.error.message);
+            this.presentAlert(err.error.message);
+          }
+        );
       })
       .catch((err) => {
         console.log('error del metodo login => ' + JSON.stringify(err));

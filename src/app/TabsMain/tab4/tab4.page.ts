@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../Shared/user.service';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { ActionSheetController, ModalController } from '@ionic/angular';
+import {ImageUploadComponent} from '../../Components/image-upload/image-upload.component'
 
 @Component({
   selector: 'app-tab4',
@@ -29,7 +32,11 @@ export class Tab4Page implements OnInit {
   username: string;
   email: string;
   showspinner: boolean;
-  constructor(private userservice: UserService) {}
+  img: any;
+  constructor(private userservice: UserService ,
+    private camera: Camera, 
+    private actionSheetCtrl: ActionSheetController, 
+    private modalController: ModalController) {}
 
   async ngOnInit() {
     this.showspinner = true;
@@ -39,6 +46,7 @@ export class Tab4Page implements OnInit {
     this.userservice.userdata().subscribe(
       (res: any) => {
         this.showspinner = false;
+        this.img = res.record.UserImg;
         this.username = res.record.fullName;
         this.email = res.record.email;
       },
@@ -54,4 +62,76 @@ export class Tab4Page implements OnInit {
   Logout() {
     this.userservice.logout();
   }
+
+ 
+  async presentActionSheet() {
+    let actionSheet = await this.actionSheetCtrl.create({
+      mode : 'ios',
+      header: 'Select Image Source',
+      buttons: [
+        {
+          text: 'Load from Library',
+          handler: () => {
+            this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
+          }
+        },
+        {
+          text: 'Use Camera',
+          handler: () => {
+            this.takePicture(this.camera.PictureSourceType.CAMERA);
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        }
+      ]
+    });
+    await actionSheet.present();
+  }
+
+ 
+  public takePicture(sourceType) {
+    // Create options for the Camera Dialog
+    var options = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      sourceType: sourceType,
+      saveToPhotoAlbum: false,
+      correctOrientation: true
+    };
+ 
+    // Get the data of an image
+    this.camera.getPicture(options).then((imagePath) => {
+      let captureDataUrl = 'data:image/jpeg;base64,' + imagePath;
+       this.presentModal(captureDataUrl)
+      // modal.onDidDismiss(data => {
+      //   if (data && data.reload) {
+      //     this.reloadImages();
+      //   }
+      // });
+    }, (err) => {
+      console.log('Error: ', err);
+    });
+  }
+
+  async presentModal(img : any) {
+    const modal = await this.modalController.create({
+      component: ImageUploadComponent,
+      cssClass: 'my-custom-class',
+      componentProps: {
+         data : img
+      }
+    });
+    modal.onDidDismiss()
+    .then((data) => {
+      console.log('modal dismissing data',JSON.stringify(data));
+      this.img = data['data'];
+  });
+    return await modal.present();
+  }
+
+ 
 }

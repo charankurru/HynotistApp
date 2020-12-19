@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../Shared/user.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -12,16 +12,19 @@ export class RegisterPage implements OnInit {
   email: string;
   password: string;
   FirstName: string;
+  loading: HTMLIonLoadingElement;
 
   constructor(
     public router: Router,
     private userservice: UserService,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private loadingCtrl: LoadingController,
   ) {}
 
   ngOnInit() {}
 
   signup() {
+    this.presentLoading();
     var body = {
       fullName: this.FirstName,
       password: this.password,
@@ -29,9 +32,11 @@ export class RegisterPage implements OnInit {
     };
 
     this.userservice.signupUser(body).subscribe(
-      (res) => {
+      (res: any) => {
         console.log(res);
-        return this.router.navigateByUrl('/');
+       this.loadingCtrl.dismiss();
+       this.presentAlert(res.message)
+        return this.router.navigateByUrl('/login');
       },
       (err) => {
         console.log(err.error[0]);
@@ -43,11 +48,21 @@ export class RegisterPage implements OnInit {
   async presentAlert(err: any) {
     const alert = await this.alertController.create({
       cssClass: 'loading-class',
-      header: 'Alert',
-      message: err,
+      mode : 'ios',
+      message: err + 'please login now',
       buttons: ['OK'],
     });
 
     await alert.present();
+  }
+
+  async presentLoading() {
+    this.loading = await this.loadingCtrl.create({
+      cssClass: 'loading-class',
+      message: 'Please wait...',
+      mode :'ios',
+      duration: 2000,
+    });
+    this.loading.present();
   }
 }

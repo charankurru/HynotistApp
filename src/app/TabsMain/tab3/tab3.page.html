@@ -1,5 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
     <ion-title>
       Favourites
     </ion-title>
@@ -7,6 +10,13 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
+  <div class="" *ngIf="favouritedoctors">
+    <div class=" " *ngIf=" favouritedoctors.length == 0">
+      <h1 style="margin-top: 50%;text-align: center;">No Favourites !</h1>
+    </div>
+  </div>
+
   <ion-list>
     <ion-item-sliding *ngFor="let fav of favouritedoctors">
       <ion-item (click)="gotoprofile(fav.favoneId._id)">
@@ -20,7 +30,7 @@
         <ion-icon color="danger" name="heart"></ion-icon>
       </ion-item>
       <ion-item-options side="end">
-        <ion-item-option color="danger" (click)="unread(item)">Remove</ion-item-option>
+        <ion-item-option color="danger">Remove</ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
 

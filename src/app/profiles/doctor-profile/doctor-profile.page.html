@@ -7,8 +7,15 @@
     <ion-buttons slot="start">
       <ion-back-button icon="chevron-back" defaultHref="home"></ion-back-button>
     </ion-buttons>
+    <ion-icon class="menu" slot="end" (click)="presentPopover()" name="ellipsis-vertical"
+      style="padding : 15px;font-size: x-large;"></ion-icon>
+
   </ion-toolbar>
-  <ion-spinner color="warning" *ngIf="isloading" name="crescent"></ion-spinner>
+
+  <ion-spinner color="warning" name="crescent" *ngIf="isloading"
+    style="height: 80px;width: 80px;display: block; margin-left: auto;margin-right: auto;margin-top:40%;">
+  </ion-spinner>
+
   <div class="ion-padding" *ngIf="!isloading">
 
     <ion-card class="ion-margin-bottom  ioncarding">
@@ -73,15 +80,15 @@
 
     <ion-grid class="ion-no-padding">
       <ion-row class="ion-align-items-baseline">
-        <ion-col size="6">
-          <h4 class="title">
+        <ion-col size-xs="6">
+          <p class="title">
             Treatment packages
-          </h4>
+          </p>
         </ion-col>
         <ion-col size="6">
-          <h4 class="more ion-text-end">
+          <p class="more ion-text-end">
             Show more
-          </h4>
+          </p>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -137,7 +144,7 @@
               <ion-card class="category" color="tertiary">
                 <ion-card-header class="ion-text-center">
                   <ion-icon src="https://www.flaticon.com/svg/static/icons/svg/3588/3588440.svg"></ion-icon>
-                  <ion-card-title>Past life regression</ion-card-title>
+                  <ion-card-title>Past regression</ion-card-title>
                   <ion-card-subtitle>hypnotherapy</ion-card-subtitle>
 
                 </ion-card-header>

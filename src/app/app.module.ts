@@ -25,6 +25,10 @@ import { DoctorService } from './Shared/doctor.service';
 import { PackageDetailsComponent } from './Components/package-details/package-details.component';
 import { PayPal } from '@ionic-native/paypal/ngx';
 
+import { Camera } from '@ionic-native/camera/ngx';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { ImageUploadComponent } from './Components/image-upload/image-upload.component';
+
 export function jwtOptionsFactory(Storage) {
   return {
     tokenGetter: () => {
@@ -41,6 +45,7 @@ export function jwtOptionsFactory(Storage) {
     SlidesComponent,
     PopoverComponent,
     PackageDetailsComponent,
+    ImageUploadComponent
   ],
   imports: [
     HttpClientModule,
@@ -71,7 +76,9 @@ export function jwtOptionsFactory(Storage) {
     BehaviourService,
     GooglePlus,
     DoctorService,
-    PayPal
+    PayPal,
+    Camera,
+    FileTransfer
   ],
   bootstrap: [AppComponent],
 })

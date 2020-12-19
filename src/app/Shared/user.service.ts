@@ -5,6 +5,9 @@ import { Storage } from '@ionic/storage';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BehaviorSubject } from 'rxjs';
 import { Platform } from '@ionic/angular';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+
+
 
 @Injectable({
   providedIn: 'root',
@@ -13,13 +16,15 @@ export class UserService {
   user = null;
   public validstate = new BehaviorSubject(false);
   public userRecordState = new BehaviorSubject<any[]>([]);
+  public userstate = new BehaviorSubject<any>([]);
   payload: any;
 
   constructor(
     private http: HttpClient,
     public storage: Storage,
     private plt: Platform,
-    private helper: JwtHelperService
+    private helper: JwtHelperService,
+    private transfer: FileTransfer
   ) {
     this.checkToken();
     this.plt.ready().then(() => {
@@ -57,6 +62,11 @@ export class UserService {
     );
   }
 
+  
+  googleuser(user: any) {
+    return this.http.post(environment.apiBaseUrl + '/googleuser', user);
+  }
+
   logout() {
     this.storage.remove('token').then(() => {
       this.validstate.next(false);
@@ -83,6 +93,7 @@ export class UserService {
   getDoctors() {
     return this.http.get(environment.apiBaseUrl + '/getDoctorsList');
   }
+
 
   //Helper Methods
 
@@ -111,6 +122,8 @@ export class UserService {
     var token = await this.getToken();
     if (token) {
       var userPayload = atob(token.split('.')[1]);
+      var jsonobj = JSON.parse(userPayload);
+      this.userstate.next(jsonobj);
       return JSON.parse(userPayload);
     } else return null;
   }

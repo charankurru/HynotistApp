@@ -50,7 +50,10 @@
           </ion-item>
           <br>
 
+          <ion-item *ngIf="timings.length == 0">
+            <ion-label>No sessions data given by doctor !</ion-label>
 
+          </ion-item>
 
           <ion-radio-group [(ngModel)]="session" (ionChange)="radioHandler()" *ngFor="let i of timings">
 
@@ -62,7 +65,7 @@
 
           </ion-radio-group>
           <br>
-          <ion-button expand="block" (click)="pay()">
+          <ion-button expand="block" (click)="makeAppointmentProcess()">
             confirm
           </ion-button>
         </div>

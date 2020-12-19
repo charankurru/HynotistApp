@@ -16,7 +16,7 @@ export class BehaviourService {
   URl: string;
 
   constructor(private router: Router, private http: HttpClient) {
-    this.URl = 'http://localhost:5000';
+    this.URl = environment.apiBaseUrl
     this.socket = io(this.URl);
   }
 
@@ -31,7 +31,7 @@ export class BehaviourService {
         this.socket.emit('appointments', {});
         this.appointsList.pipe(take(1)).subscribe((placings) => {
           this.appoints.next(placings.concat(data));
-          this.router.navigate(['home/tab2']);
+          // this.router.navigate(['home/tab2']);
         });
       });
   }

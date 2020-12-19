@@ -1,5 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
     <ion-title>
       Hypnotist
     </ion-title>
@@ -8,56 +11,7 @@
   </ion-toolbar>
 </ion-header>
 
-<!-- <ion-content [fullscreen]="true">
-  <ion-grid>
 
-    <ion-card style="margin-top: 8px;" *ngIf="bool">
-      <ion-item>
-        <ion-input class="input-field" placeholder="search">
-        </ion-input>
-        <ion-icon slot="end" name="arrow-forward"></ion-icon>
-      </ion-item>
-    </ion-card>
-
-    <ion-row>
-      <ion-col size-xs="12" *ngFor="let arr of doctorsarray">
-        <ion-card (click)="gotoprofile(arr)">
-          <div class="autosize" style="height: 200px;">
-            <img style="width:100%; 
-            height:100%; " [src]="arr.imgUrl" />
-          </div>
-
-          <ion-grid>
-            <ion-row>
-              <ion-col size="auto">
-                <ion-card-title>Dr.{{arr.fullName}}</ion-card-title>
-              </ion-col>
-
-              <div style="margin-top: 10px; ">
-                <ion-col size="auto">
-                  <ion-icon class="star" name="star"></ion-icon>
-                </ion-col>
-                <ion-col size="auto">
-                  <ion-icon class="star" name="star"></ion-icon>
-                </ion-col>
-                <ion-col size="auto">
-                  <ion-icon class="star" name="star"></ion-icon>
-                </ion-col>
-                <ion-col size="auto">
-                  <ion-icon class="star" name="star"></ion-icon>
-                </ion-col>
-              </div>
-            </ion-row>
-            <ion-row>
-              <ion-card-subtitle>Hypnotist in gotham MBBS</ion-card-subtitle>
-            </ion-row>
-          </ion-grid>
-
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-content> -->
 
 
 
@@ -74,7 +28,7 @@
             Terapists
           </h4>
         </ion-col>
-        <ion-col size="6">
+        <ion-col size="6" (click)="gotoallDoc()">
           <h4 class="more ion-text-end">
             View more
           </h4>
@@ -89,8 +43,8 @@
       <ion-col size="12">
         <ion-slides [options]="options">
 
-          <ion-slide *ngFor="let arr of doctorsarray">
-            <ion-card class="card" (click)="gotoprofile(arr)" mode="ios">
+          <ion-slide *ngFor="let arr of reversearray">
+            <ion-card class="card" (click)="gotoprofile(arr)" mode="ios" *ngIf="reversearray">
               <ion-card-content class="ion-text-left">
 
                 <div class="img-wrapper">
@@ -110,7 +64,6 @@
               </ion-card-content>
             </ion-card>
           </ion-slide>
-
 
 
         </ion-slides>
@@ -147,7 +100,7 @@
             <ion-card class="category" color="danger">
               <ion-card-header class="ion-text-center">
                 <ion-icon src="https://www.flaticon.com/svg/static/icons/svg/3588/3588397.svg"></ion-icon>
-                <ion-card-title>Cognitive </ion-card-title>
+                <ion-card-title class="catitle">Cognitive </ion-card-title>
                 <ion-card-subtitle>hypnotherapy</ion-card-subtitle>
               </ion-card-header>
             </ion-card>
@@ -188,7 +141,7 @@
               <ion-card-header class="ion-text-center">
                 <ion-icon src="https://www.flaticon.com/svg/static/icons/svg/3588/3588440.svg"></ion-icon>
                 <ion-card-title>Past life regression</ion-card-title>
-
+                <ion-card-subtitle>hypnotherapy</ion-card-subtitle>
               </ion-card-header>
             </ion-card>
           </ion-slide>
@@ -247,7 +200,7 @@
         <ion-slides [options]="options">
 
           <ion-slide *ngFor="let arr of reversearray">
-            <ion-card class="card" (click)="gotoprofile(arr)" mode="ios">
+            <ion-card class="card" (click)="gotoprofile(arr)" mode="ios" *ngIf="reversearray">
               <ion-card-content class="ion-text-left">
 
                 <div class="img-wrapper">

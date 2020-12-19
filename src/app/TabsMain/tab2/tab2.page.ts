@@ -12,6 +12,7 @@ export class Tab2Page implements OnInit {
   loadedPlaces: any;
   processing: boolean;
   payload: any;
+  appointlength : any;
 
   constructor(
     private behave: BehaviourService,
@@ -20,10 +21,12 @@ export class Tab2Page implements OnInit {
 
   ngOnInit() {
     this.processing = true;
+    this.userservice.userstate.subscribe((res) => {
+      this.payload  = res;
+    });
   }
 
   async ionViewWillEnter() {
-    this.payload = await this.userservice.getUserPayload();
     this.getUserdata();
     this.getAppointmentsrFromBehaviourservice();
 
@@ -36,6 +39,7 @@ export class Tab2Page implements OnInit {
     this.userservice.userdata().subscribe(
       (res: any) => {
         this.loadedPlaces = res.record.appointments;
+       
       },
       (err) => console.log(err)
     );

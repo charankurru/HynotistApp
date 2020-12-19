@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class PopoverService {
-  public favs = new BehaviorSubject<Book[]>([]);
+  public favs = new BehaviorSubject<any[]>([]);
 
   constructor(private router: Router, private http: HttpClient) {}
 
@@ -25,8 +25,9 @@ export class PopoverService {
       .subscribe((res) => {
         console.log(res);
         this.favslist.pipe(take(1)).subscribe((placings) => {
+          console.log(placings);
           this.favs.next(placings.concat(data));
-          this.router.navigate(['home/tab3']);
+          this.router.navigate(['/tab3']);
         });
       });
   }
