@@ -85,7 +85,6 @@ export class AppComponent {
   async ngOnInit(){
     this.userservice.userstate.subscribe((res) => {
       this.user = res;
-     
     });
   }
 

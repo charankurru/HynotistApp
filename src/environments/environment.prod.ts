@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
-  apiBaseUrl: 'https://hypnoterapist-server.herokuapp.com',
+  // production: false,
+  // apiBaseUrl: 'https://hypnoterapist-server.herokuapp.com',
 };
